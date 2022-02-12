@@ -1,3 +1,15 @@
+from re import search
 from django.contrib import admin
-from blog.models import KategoriModel
-admin.site.register (KategoriModel)
+from blog.models import KategoriModel, YazilarModel
+
+admin.site.register(KategoriModel)
+
+
+class YazilarAdmin(admin.ModelAdmin):
+    search_fields=('baslik','icerik')
+    list_display = (
+        'baslik', 'olusturulma_tarihi', 'duzenleme_tarihi'
+        )
+
+
+admin.site.register(YazilarModel, YazilarAdmin)
