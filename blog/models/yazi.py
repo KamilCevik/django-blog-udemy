@@ -16,7 +16,7 @@ class YazilarModel(models.Model):
     duzenleme_tarihi = models.DateTimeField(auto_now=True)
     slug = AutoSlugField(populate_from="baslik", unique=True)
     kategoriler = models.ManyToManyField(KategoriModel, related_name="yazi")
-    yazar = models.ForeignKey(User,
+    yazar = models.ForeignKey("account.CustomUserModel",
                               on_delete=models.CASCADE,
                               related_name="yazilar")
 

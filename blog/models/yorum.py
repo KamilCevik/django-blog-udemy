@@ -5,7 +5,7 @@ from blog.models import YazilarModel
 
 
 class YorumModel(models.Model):
-    yazan = models.ForeignKey(User,
+    yazan = models.ForeignKey("account.CustomUserModel",
                               on_delete=models.CASCADE,
                               related_name="yorum")
     yazi = models.ForeignKey(YazilarModel,
