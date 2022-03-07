@@ -1,8 +1,10 @@
 <div class="col-sm-3">
+  
     <div class="card mb-3" >
       <div class="card-header">
         Menü
       </div>
+      {% if request.user.is_authenticated %}
       <ul class="list-group list-group-flush">
         <li class="list-group-item">
           Profili Düzenle
@@ -14,11 +16,15 @@
           Yazı Ekle
         </li>
         <li class="list-group-item">
-          Yazılarım
+          <a href="{%url 'yazilarim'%}">Yazılarım</a> 
         </li>
         <li class="list-group-item">
           Çıkış Yap
         </li>
       </ul>
+      {% else %}
+      Login formu gelecek
+      {% endif %}
+      
     </div>
   </div>
