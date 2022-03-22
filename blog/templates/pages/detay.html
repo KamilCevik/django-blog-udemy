@@ -17,7 +17,15 @@
                             {{ yazi.icerik|safe }}
                         </p>
                         <p class="card-text">
-                            <small class="text-muted">Önce paylaşıldı :{{ yazi.duzenleme_tarihi|timesince }}</small>
+                            <small class="text-muted">
+                                Önce paylaşıldı :{{ yazi.duzenleme_tarihi|timesince }}
+                            </small>
+                            {% if request.user == yazi.yazar %}
+                            <p>
+                                <a class='btn btn-primary' href="{% url 'yazi-guncelle' slug=yazi.slug %}">Düzenle</a>
+                                <a class='btn btn-danger' href="{% url 'yazi-sil' slug=yazi.slug %}">Sil</a>
+                            </p>
+                            {% endif %}
                         </p>
                     </div>
                 </div>
