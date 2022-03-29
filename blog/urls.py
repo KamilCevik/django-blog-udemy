@@ -1,17 +1,24 @@
+from re import template
 from unicodedata import name
 from django.urls import path, include
-from blog.views import iletisim,yorum_sil,detay,yazi_sil,yazi_guncelle, anasayfa, kategori, yazilarim, yazi_ekle
-
+from blog.views import İletisimFormView,yorum_sil,DetayView,YaziSilDeleteView,YaziGuncelleUpdateView, anasayfa, KategoriListView, yazilarim, YaziEkleCreateView
+from django.views.generic import TemplateView,RedirectView
 
 urlpatterns = [
     path('', anasayfa, name='anasayfa'),
-    path('iletisim', iletisim, name='iletisim'),
-    path('kategori/<slug:kategoriSlug>', kategori, name='kategori'),
+    path('hakkimda', TemplateView.as_view(
+        template_name='pages/hakkimda.html'    
+    ), name="hakkimda"),
+    path('yonlendir',RedirectView.as_view(
+        url='https://www.google.com'
+        ),name='yonlendir'),
+    path('iletisim', İletisimFormView.as_view(), name='iletisim'),
+    path('kategori/<slug:kategoriSlug>', KategoriListView.as_view(), name='kategori'),
     path('yazilarim', yazilarim, name='yazilarim'),
-    path('detay/<slug:slug>', detay, name='detay'),
-    path('yazi-ekle', yazi_ekle, name='yazi-ekle'),
-    path('yazi-guncelle/<slug:slug>', yazi_guncelle, name='yazi-guncelle'),
-    path('yazi-sil/<slug:slug>', yazi_sil, name='yazi-sil'),
+    path('detay/<slug:slug>', DetayView.as_view(), name='detay'),
+    path('yazi-ekle',YaziEkleCreateView.as_view, name='yazi-ekle'),
+    path('yazi-guncelle/<slug:slug>', YaziGuncelleUpdateView.as_view(), name='yazi-guncelle'),
+    path('yazi-sil/<slug:slug>', YaziSilDeleteView.as_view(), name='yazi-sil'),
     path('yorum-sil/<int:id>', yorum_sil, name='yorum-sil'),
     
 ]
