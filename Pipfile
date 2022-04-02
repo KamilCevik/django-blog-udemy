@@ -10,6 +10,7 @@ django-autoslug-field = "*"
 pillow = "*"
 django-ckeditor = "*"
 django-crispy-forms = "*"
+django-environ = "*"
 
 [dev-packages]
 yapf = "*"

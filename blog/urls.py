@@ -12,6 +12,9 @@ urlpatterns = [
     path('yonlendir',RedirectView.as_view(
         url='https://www.google.com'
         ),name='yonlendir'),
+    path('email-gonderildi',TemplateView.as_view(
+        template_name='pages/email-gonderildi.html'
+        ),name='email-gonderildi'),
     path('iletisim', İletisimFormView.as_view(), name='iletisim'),
     path('kategori/<slug:kategoriSlug>', KategoriListView.as_view(), name='kategori'),
     path('yazilarim', yazilarim, name='yazilarim'),
